@@ -21,6 +21,12 @@ public class Vehicle {
         System.out.println("Vehicle " + name + " accelerates with " + speed + " for " + time + " seconds.");
         double traveledDistance = speed * time;
         System.out.println("Traveled distance: " + traveledDistance);
+        double consumedFuel = mileage * traveledDistance / 100;
+        fuelLevel -= consumedFuel;
+
+
+
+
         return traveledDistance;
     }
 
