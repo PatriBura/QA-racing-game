@@ -1,6 +1,7 @@
 package org.fasttrackit;
 
 public class Game {
+    private Vehicle[] competitors = new Vehicle [10];
 
     private Car firstCompetitor;
     private Car secondCompetitor;
@@ -27,6 +28,13 @@ public class Game {
         engine2.setManufacturer("Ford");
 
         car2.setEngine(engine2);
+
+        competitors[0] = car1;
+        competitors[1] = car2;
+        for (int i = 0; i < competitors.length; i++){
+            System.out.println("Iteration number" + i);
+            System.out.println(competitors[1]);
+        }
 
         firstCompetitor = car1;
         secondCompetitor = car2;
