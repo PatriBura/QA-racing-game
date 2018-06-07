@@ -10,6 +10,8 @@ public class Game {
     public static final int INITIAL_FUEL_LEVEL = 300;
     public static final int LOWER_MILEAGE_BOUND = 3;
     public static final int UPPER_MILEAGE_BOUND = 20;
+    public static final double TRACK_LENGTH = 500;
+
     private Vehicle[] competitors = new Vehicle[10];
     private List<Vehicle> competitorsList = new ArrayList<>();
 
@@ -18,7 +20,7 @@ public class Game {
 
     public void start() {
         initCompetitors();
-
+        determineWinner();
 //        Car car1 = new Car("Dacia");
 //        car1.setColor("red");
 //        car1.setDoorCount(3);
@@ -72,6 +74,28 @@ public class Game {
 //        System.out.println(car1);
     }
 
+
+    private void determineWinner() {
+
+        boolean winnerUnknown = true;
+        while (winnerUnknown) {
+
+
+            for (int i = 0; i < competitorsList.size(); i++) {
+                System.out.println("Enter acceleration speed for player " + i + 1);
+                int acceleration = readAndCheckInt();
+                double traveledDistance = competitorsList.get(i).accelerate(acceleration);
+                if (traveledDistance >= TRACK_LENGTH) {
+                    System.out.println("Congrats Player" + (i + 1) + "won the game");
+                    winnerUnknown = false;
+                    break;
+                }
+
+
+            }
+        }
+    }
+
     private void initCompetitors() {
         System.out.println("Enter number of players");
         int playerNumber = readAndCheckInt();
@@ -80,7 +104,7 @@ public class Game {
         System.out.println("Starting game with " + playerNumber + " players");
         for (int i = 1; i <= playerNumber; i++) {
             String name = readCarStringProperty("Enter car name for player " + i);
-            String color =  readCarStringProperty("Enter car color for player " + i);
+            String color = readCarStringProperty("Enter car color for player " + i);
 
             Vehicle vehicle = new Car(name);
             vehicle.setColor(color);
@@ -95,8 +119,8 @@ public class Game {
         Scanner scanner = new Scanner(System.in);
         int number;
         try {
-       number = scanner.nextInt();
-        } catch (InputMismatchException e){
+            number = scanner.nextInt();
+        } catch (InputMismatchException e) {
             System.out.println("Please enter a valid number");
             number = readAndCheckInt();
         }
