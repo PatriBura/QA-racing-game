@@ -122,7 +122,7 @@ public class Game {
             number = scanner.nextInt();
         } catch (InputMismatchException e) {
             System.out.println("Please enter a valid number");
-            number = readAndCheckInt();
+            return readAndCheckInt();
         }
         return number;
     }
